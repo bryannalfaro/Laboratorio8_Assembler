@@ -6,6 +6,7 @@
 /*ORGANIZACION DE COMPUTADORAS Y ASSEMBLER*/
 
 suma:
+	add r0, r1, r0
 
 multiplicacion:
 

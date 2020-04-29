@@ -27,8 +27,15 @@ opcion4:     .asciz "P Para realizar una operacion de potencia"
 opcion5:     .asciz "= Para mostrar el resultado almacenado"
 salirPrograma:     .asciz "q Para salir del programa"
 
+valor: .asciz "Tu numero: %d\n"
+ingresoValor: .asciz "%d\n"
 formatoOpcion: .asciz "%s" 
 opcionIngreso: .asciz " "
+
+/*Registro que servira como historial*/
+numero1: .word 0
+numero2: .word 0
+
 
 .text
 .align 2
@@ -36,11 +43,13 @@ opcionIngreso: .asciz " "
 .type main,%function
 
 
-
 main:
 
 	stmfd sp!, {lr}	/* SP = R13 link register */
 	/* valor1 */
+	
+	ldr r1, =numero1
+	ldr r1, [r1]
 
 inicio:
 
@@ -60,7 +69,7 @@ inicio:
 	ldr r0, =salirPrograma
 	bl puts
 
-/*INGRESO DE OPCION*/
+	/*INGRESO DE OPCION*/
 	ldr r0,=formatoOpcion
 	ldr r1,=opcionIngreso
 	bl scanf
@@ -99,8 +108,23 @@ salida:
 sumaLlamado:
 	ldr r0, =suma /*PROBANDO QUE SI ENTRE*/
 	bl puts
+	
+	ldr r0, =ingresoValor
+	ldr r1, =numero1
+	bl scanf
+	
+	@ compara y salta si r0 es 0 (error)
+	cmp r0,#0
+	beq error
+	
+	@ imprime lo que recibio
+	ldr r0,=valor
+	ldr r1,=numero1
+	ldr r1,[r1]
+	bl printf 
+	
 	b inicio
-
+	
 multiplicacionLlamado:
 	ldr r0, =multPrint  /*PROBANDO QUE SI ENTRE*/
 	bl puts	
