@@ -16,5 +16,3 @@ potencia:
 /*esto no se si lo hacemos con subrutina o no*/
 
 resultadoAlmacenado:
-
-despedida:
