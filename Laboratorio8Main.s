@@ -48,8 +48,8 @@ main:
 	stmfd sp!, {lr}	/* SP = R13 link register */
 	/* valor1 */
 	
-	ldr r1, =numero1
-	ldr r1, [r1]
+	ldr r9, =numero2
+	ldr r9, [r9]
 
 inicio:
 
@@ -123,6 +123,11 @@ sumaLlamado:
 	ldr r1,[r1]
 	bl printf 
 	
+	ldr r0,=numero1
+	ldr r0,[r0]
+	mov r1, r9
+	
+	bl suma /*Aqui tira error*/
 	b inicio
 	
 multiplicacionLlamado:
