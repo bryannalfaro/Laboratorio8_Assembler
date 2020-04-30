@@ -63,13 +63,34 @@ moduloH:
 .global potenciaH
 potenciaH:
 	push {lr}
+	mov r4, r1
+	cmp r3, #1
+	beq potencia1
+	cmp r3, #0
+	beq potencia0
+	
+	
 	ciclo:
-		mul r1, r1, r1
+		mul r1, r4, r1
 		sub r3, #1
 		cmp r3, #1
 		bne ciclo
-	
+	mov r1, r1
 	ldr r0, =resultadoPotencia
 	bl printf
+	b salir
+	
+	potencia1:
+	ldr r0, =resultadoPotencia
+	bl printf
+	b salir
+	
+	potencia0:
+		mov r1, #1
+		ldr r0, =resultadoPotencia
+		bl printf
+		b salir
+	salir:
 	pop {lr}
 	mov pc, lr
+	
