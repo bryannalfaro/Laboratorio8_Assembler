@@ -124,10 +124,11 @@ sumaLlamado:
 	bl printf 
 	
 	ldr r0,=numero1
-	ldr r0,[r0]
-	mov r1, r9
+	mov r3,r0 /*dato1*/
+	mov r1, r9 /*dato2*/
 	
-	bl suma /*Aqui tira error*/
+	bl sumaH /*Aqui tira error*/
+	
 	b inicio
 	
 multiplicacionLlamado:

@@ -12,14 +12,12 @@ dato: .asciz "Si entro en suma"
 
 .text
 .align 2
-.global OperacionesSubrutinas
+.global sumaH
 
-suma:
+sumaH:
 	push {lr}
-	ldr r0, =dato
-	bl puts
-	add r0, r0, r1
-	ldr r1, [r0]
+	add r3, r3, r1
+	ldr r1, [r3]
 	ldr r0, =resultadoSuma
 	bl printf
 	pop {lr}
