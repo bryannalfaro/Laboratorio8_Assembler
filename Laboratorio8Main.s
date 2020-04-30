@@ -107,7 +107,6 @@ salida:
 /*A PARTIR DE ACA SE LLAMAN A SUBRUTINAS DENTRO DE CADA ETIQUETA*/
 sumaLlamado:
 	
-	
 	ldr r0, =suma /*PROBANDO QUE SI ENTRE*/
 	bl puts
 	
@@ -141,8 +140,36 @@ sumaLlamado:
 	b inicio
 	
 multiplicacionLlamado:
+
 	ldr r0, =multPrint  /*PROBANDO QUE SI ENTRE*/
-	bl puts	
+	bl puts
+	ldr r0, =ingresoValor
+	ldr r1, =numero1
+	bl scanf
+	
+	@ compara y salta si r0 es 0 (error)
+	cmp r0,#0
+	beq error
+	
+	@ imprime lo que recibio
+	ldr r0,=valor
+	ldr r1,=numero1
+	ldr r1,[r1]
+	bl printf 
+
+	ldr r9, =numero2
+	ldr r9, [r9]
+	
+	mov r1,r9 /*dato2*/
+	ldr r2, =numero1
+	ldr r2, [r2]
+	
+	mov r3, r2 /*dato1*/
+	
+	bl multiplicacionH 
+	
+	mov r9, r1
+	
 	b inicio
 
 moduloLlamado:
@@ -152,7 +179,37 @@ moduloLlamado:
 
 potenciaLlamado:
 	ldr r0, =potenciaPrint  /*PROBANDO QUE SI ENTRE*/
-	bl puts	
+	bl puts
+
+	ldr r0, =ingresoValor
+	ldr r1, =numero1
+	bl scanf
+	
+	@ compara y salta si r0 es 0 (error)
+	cmp r0,#0
+	beq error
+	
+	@ imprime lo que recibio
+	ldr r0,=valor
+	ldr r1,=numero1
+	ldr r1,[r1]
+	bl printf 
+
+	ldr r9, =numero2
+	ldr r9, [r9]
+	
+	mov r1,r9 /*dato2*/
+	ldr r2, =numero1
+	ldr r2, [r2]
+	
+	mov r3, r2 /*dato1*/
+	
+	bl potenciaH 
+	
+	mov r9, r1
+	
+	b inicio
+		
 	b inicio
 
 resultadoAlmacenadoLlamado:

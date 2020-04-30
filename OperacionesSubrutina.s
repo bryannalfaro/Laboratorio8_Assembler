@@ -8,6 +8,8 @@
 .data
 .align 2
 resultadoSuma: .asciz "TU SUMA ES : %d\n"
+resultadoProducto: .asciz "TU PRODUCTO ES : %d\n"
+resultadoPotencia: .asciz "TU POTENCIA ES : %d\n"
 dato: .asciz "Si entro en suma"
 show: .asciz "Valor de r1 es : %d\n"
 show1: .asciz "Valor de r2 es : %d\n"
@@ -26,10 +28,12 @@ sumaH:
 	pop {lr}
 	mov pc, lr
 
-multiplicacion:
+.global multiplicacionH
+multiplicacionH:
 	push {lr}
-	add r1, r1, r0
-	ldr r0, =resultadoSuma
+	mul r1,r1,r3
+	mov r1, r1
+	ldr r0, =resultadoProducto
 	bl printf
 	pop {lr}
 	mov pc, lr
@@ -37,15 +41,21 @@ multiplicacion:
 modulo:
 	push {lr}
 	add r1, r1, r0
-	ldr r0, =resultadoSuma
+	ldr r0, =resultadoProducto
 	bl printf
 	pop {lr}
 	mov pc, lr
 
-potencia:
+.global potenciaH
+potenciaH:
 	push {lr}
-	add r1, r1, r0
-	ldr r0, =resultadoSuma
+	ciclo:
+		mul r1, r1, r1
+		sub r3, #1
+		cmp r3, #1
+		bne ciclo
+	
+	ldr r0, =resultadoPotencia
 	bl printf
 	pop {lr}
 	mov pc, lr
