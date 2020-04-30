@@ -31,7 +31,7 @@ valor: .asciz "Tu numero: %d\n"
 ingresoValor: .asciz "%d"
 formatoOpcion: .asciz "%s" 
 opcionIngreso: .asciz " "
-
+despedida: .asciz "Gracias por usar nuestro programa"
 /*Registro que servira como historial*/
 numero1: .word 0
 numero2: .word 5 /*Solo como prueba para ver si se suma con el valor que ingreso*/
@@ -98,6 +98,8 @@ error:
 	b inicio
 	
 salida:
+	ldr r0, =despedida
+	bl puts
 	/* salida correcta */
 	mov r0, #0
 	mov r3, #0
