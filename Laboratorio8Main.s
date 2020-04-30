@@ -28,7 +28,7 @@ opcion5:     .asciz "= Para mostrar el resultado almacenado"
 salirPrograma:     .asciz "q Para salir del programa"
 
 valor: .asciz "Tu numero: %d\n"
-ingresoValor: .asciz "%d\n"
+ingresoValor: .asciz "%d"
 formatoOpcion: .asciz "%s" 
 opcionIngreso: .asciz " "
 
@@ -175,7 +175,37 @@ multiplicacionLlamado:
 moduloLlamado:
 	ldr r0, =moduloPrint  /*PROBANDO QUE SI ENTRE*/
 	bl puts	
+	
+	ldr r0, =ingresoValor
+	ldr r1, =numero1
+	bl scanf
+	
+	@ compara y salta si r0 es 0 (error)
+	cmp r0,#0
+	beq error
+	
+	@ imprime lo que recibio
+	ldr r0,=valor
+	ldr r1,=numero1
+	ldr r1,[r1]
+	bl printf 
+
+	ldr r9, =numero2
+	ldr r9, [r9]
+	
+	mov r1,r9 /*dato2*/
+	ldr r2, =numero1
+	ldr r2, [r2]
+	
+	mov r3, r2 /*dato1*/
+	
+	bl moduloH 
+	
+	mov r9, r1
+	
 	b inicio
+	
+	
 
 potenciaLlamado:
 	ldr r0, =potenciaPrint  /*PROBANDO QUE SI ENTRE*/
@@ -208,8 +238,6 @@ potenciaLlamado:
 	
 	mov r9, r1
 	
-	b inicio
-		
 	b inicio
 
 resultadoAlmacenadoLlamado:

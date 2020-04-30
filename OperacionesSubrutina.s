@@ -10,6 +10,7 @@
 resultadoSuma: .asciz "TU SUMA ES : %d\n"
 resultadoProducto: .asciz "TU PRODUCTO ES : %d\n"
 resultadoPotencia: .asciz "TU POTENCIA ES : %d\n"
+resultadoModulo: .asciz "TU MODULO ES : %d\n"
 dato: .asciz "Si entro en suma"
 show: .asciz "Valor de r1 es : %d\n"
 show1: .asciz "Valor de r2 es : %d\n"
@@ -38,13 +39,26 @@ multiplicacionH:
 	pop {lr}
 	mov pc, lr
 
-modulo:
+.global moduloH
+moduloH:
 	push {lr}
-	add r1, r1, r0
-	ldr r0, =resultadoProducto
-	bl printf
-	pop {lr}
-	mov pc, lr
+	
+	and r5, #0
+	/*Division por metodo de resta continua*/
+	resta:
+		sub r1, r1, r3
+		mov r4, r1
+		add r5, r5, #1
+		cmp r1, r3
+		bgt resta
+		blt impresion
+	
+	impresion:
+		mov r4, r1
+		ldr r0, =resultadoModulo
+		bl printf
+		pop {lr}
+		mov pc, lr
 
 .global potenciaH
 potenciaH:
