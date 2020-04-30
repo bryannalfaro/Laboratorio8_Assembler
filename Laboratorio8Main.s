@@ -49,6 +49,7 @@ main:
 	/* valor1 */
 	
 	
+	
 
 inicio:
 
@@ -127,7 +128,6 @@ sumaLlamado:
 	ldr r9, =numero2
 	ldr r9, [r9]
 	
-	
 	mov r1,r9 /*dato2*/
 	ldr r2, =numero1
 	ldr r2, [r2]
@@ -135,6 +135,8 @@ sumaLlamado:
 	mov r3, r2 /*dato1*/
 	
 	bl sumaH 
+	
+	mov r9, r1
 	
 	b inicio
 	
