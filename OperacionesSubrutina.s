@@ -9,6 +9,8 @@
 .align 2
 resultadoSuma: .asciz "TU SUMA ES : %d\n"
 dato: .asciz "Si entro en suma"
+show: .asciz "Valor de r1 es : %d\n"
+show1: .asciz "Valor de r2 es : %d\n"
 
 .text
 .align 2
@@ -16,8 +18,9 @@ dato: .asciz "Si entro en suma"
 
 sumaH:
 	push {lr}
-	add r3, r3, r1
-	ldr r1, [r3]
+	
+	add r1, r1, r3
+	mov r1, r1
 	ldr r0, =resultadoSuma
 	bl printf
 	pop {lr}

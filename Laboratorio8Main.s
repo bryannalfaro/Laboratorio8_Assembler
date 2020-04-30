@@ -34,7 +34,7 @@ opcionIngreso: .asciz " "
 
 /*Registro que servira como historial*/
 numero1: .word 0
-numero2: .word 0
+numero2: .word 5 /*Solo como prueba para ver si se suma con el valor que ingreso*/
 
 
 .text
@@ -48,8 +48,7 @@ main:
 	stmfd sp!, {lr}	/* SP = R13 link register */
 	/* valor1 */
 	
-	ldr r9, =numero2
-	ldr r9, [r9]
+	
 
 inicio:
 
@@ -106,6 +105,8 @@ salida:
 
 /*A PARTIR DE ACA SE LLAMAN A SUBRUTINAS DENTRO DE CADA ETIQUETA*/
 sumaLlamado:
+	
+	
 	ldr r0, =suma /*PROBANDO QUE SI ENTRE*/
 	bl puts
 	
@@ -122,12 +123,18 @@ sumaLlamado:
 	ldr r1,=numero1
 	ldr r1,[r1]
 	bl printf 
+
+	ldr r9, =numero2
+	ldr r9, [r9]
 	
-	ldr r0,=numero1
-	mov r3,r0 /*dato1*/
-	mov r1, r9 /*dato2*/
 	
-	bl sumaH /*Aqui tira error*/
+	mov r1,r9 /*dato2*/
+	ldr r2, =numero1
+	ldr r2, [r2]
+	
+	mov r3, r2 /*dato1*/
+	
+	bl sumaH 
 	
 	b inicio
 	
