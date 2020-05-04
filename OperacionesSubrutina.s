@@ -53,6 +53,7 @@ moduloH:
 		add r5, r5, #1
 		cmp r1, r3
 		bgt resta
+		beq resta
 		blt impresion
 	
 	impresion:
