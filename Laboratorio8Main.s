@@ -28,13 +28,14 @@ opcion5:     .asciz "= Para mostrar el resultado almacenado"
 salirPrograma:     .asciz "q Para salir del programa"
 
 valor: .asciz "Tu numero: %d\n"
+acumulado: .asciz "Tu acumulado: %d\n"
 ingresoValor: .asciz "%d"
 formatoOpcion: .asciz "%s" 
 opcionIngreso: .asciz " "
 despedida: .asciz "Gracias por usar nuestro programa"
 /*Registro que servira como historial*/
 numero1: .word 0
-numero2: .word 5 /*Solo como prueba para ver si se suma con el valor que ingreso*/
+numero2: .word 0 /*Solo como prueba para ver si se suma con el valor que ingreso*/
 
 
 .text
@@ -138,7 +139,8 @@ sumaLlamado:
 	bl sumaH 
 	
 	mov r9, r1
-	
+	ldr r0, =numero2
+	str r5, [r0]
 	b inicio
 	
 multiplicacionLlamado:
@@ -171,7 +173,8 @@ multiplicacionLlamado:
 	bl multiplicacionH 
 	
 	mov r9, r1
-	
+	ldr r0, =numero2
+	str r5, [r0]
 	b inicio
 
 moduloLlamado:
@@ -204,7 +207,8 @@ moduloLlamado:
 	bl moduloH 
 	
 	mov r9, r1
-	
+	ldr r0, =numero2
+	str r4, [r0]
 	b inicio
 	
 	
@@ -239,11 +243,15 @@ potenciaLlamado:
 	bl potenciaH 
 	
 	mov r9, r1
-	
+	ldr r0, =numero2
+	str r5, [r0]
 	b inicio
 
 resultadoAlmacenadoLlamado:
 	ldr r0, =resultadoPrint  /*PROBANDO QUE SI ENTRE*/
 	bl puts
-	
+	ldr r1, =numero2
+	ldr r1, [r1]
+	ldr r0, =acumulado
+	bl printf
 	b inicio

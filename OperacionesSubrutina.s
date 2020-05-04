@@ -21,9 +21,9 @@ show1: .asciz "Valor de r2 es : %d\n"
 
 sumaH:
 	push {lr}
-	
+	and r5, #0
+	add r5, r1, r3
 	add r1, r1, r3
-	mov r1, r1
 	ldr r0, =resultadoSuma
 	bl printf
 	pop {lr}
@@ -32,6 +32,8 @@ sumaH:
 .global multiplicacionH
 multiplicacionH:
 	push {lr}
+	and r5, #0
+	mul r5, r1, r3
 	mul r1,r1,r3
 	mov r1, r1
 	ldr r0, =resultadoProducto
@@ -75,6 +77,7 @@ potenciaH:
 		sub r3, #1
 		cmp r3, #1
 		bne ciclo
+	mov r5, r1
 	mov r1, r1
 	ldr r0, =resultadoPotencia
 	bl printf
