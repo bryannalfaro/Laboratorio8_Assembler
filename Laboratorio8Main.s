@@ -9,10 +9,10 @@
 
 
 /*PRINTEOS DE PRUEBA QUE ENTRA A LAS ETIQUETAS*/
-suma: .asciz "Estas en suma"
-multPrint: .asciz "Estas en mult"
-potenciaPrint: .asciz "Estas en potencia"
-moduloPrint: .asciz "Estas en modulo"
+suma: .asciz "Ingresa dato a sumar"
+multPrint: .asciz "Ingresa dato a multiplicar"
+potenciaPrint: .asciz "Ingresa exponente del numero"
+moduloPrint: .asciz "Ingresa modulo"
 resultadoPrint: .asciz "Estas en resultado"
 
 /*MENSAJE DE ERROR AL INGRESAR AL MENU*/
